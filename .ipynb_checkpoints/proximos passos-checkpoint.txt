@@ -1,0 +1,4 @@
+224 valores vazios na coluna Churn são críticos, já que ela é justamente a variável-alvo na análise de evasão
+Prever os valores ausentes com modelo auxiliar (avançado)
+Se quiser aproveitar esses 224 registros mesmo sem o valor de Churn, uma opção é treinar um modelo com os dados conhecidos e prever esses casos com base nos padrões observados. Isso é mais avançado, mas pode ser bem útil.
+Se quiser seguir com o modelo preditivo para preencher os Churn ausentes, posso te ajudar a montar passo a passo com scikit-learn ou XGBoost. Ou, se preferir focar na limpeza por agora, podemos avançar com a remoção e normalização de colunas.

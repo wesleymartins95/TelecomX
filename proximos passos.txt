@@ -1,0 +1,63 @@
+224 valores vazios na coluna Churn são críticos, já que ela é justamente a variável-alvo na análise de evasão
+Prever os valores ausentes com modelo auxiliar (avançado)
+Se quiser aproveitar esses 224 registros mesmo sem o valor de Churn, uma opção é treinar um modelo com os dados conhecidos e prever esses casos com base nos padrões observados. Isso é mais avançado, mas pode ser bem útil.
+Se quiser seguir com o modelo preditivo para preencher os Churn ausentes, posso te ajudar a montar passo a passo com scikit-learn ou XGBoost. Ou, se preferir focar na limpeza por agora, podemos avançar com a remoção e normalização de colunas.
+
+variaveis categoricas 
+# hipoteses
+#Clientes com contrato mensal geralmente têm maior taxa de churn.
+
+#Certos métodos de pagamento, como boleto ou débito automático, podem estar associados a maior evasão.
+
+****Análise do comportamento da variável charges_total em relação ao churn****
+
+O gráfico boxplot1 revela diferenças claras no padrão de gasto total entre clientes que permaneceram e os que cancelaram. Vamos aos insights:
+
+Clientes que permaneceram (churn = 0)
+Mediana: Aproximadamente R$ 1.683,60, conforme confirmado pelos dados do groupby no seu notebook.
+
+Gastos mais elevados: Muitos clientes permaneceram após gastar valores mais altos, com a maioria concentrada entre R$ 1.000 e R$ 4.000.
+Dispersão: Menor variação de valores extremos. Alguns clientes gastaram até ~R$ 8.600, mas sem grande distorção na mediana.
+
+Clientes que cancelaram (churn = 1)
+Mediana menor: Cerca de R$ 703,55, ou seja, bem abaixo dos que permaneceram.
+
+Distribuição mais densa em valores baixos: A maioria dos cancelamentos está ligada a clientes com gastos inferiores a R$ 2.000.
+
+Mais outliers: Existem clientes que cancelaram mesmo após gastar valores altos (acima de R$ 6.000), indicando que gasto elevado não garante fidelidade.
+
+O que isso pode significar?
+Clientes com pouco tempo de uso e baixo valor total investido podem estar testando o serviço e desistindo rapidamente.
+
+Por outro lado, clientes com maior histórico e investimento tendem a ser mais leais, mas não estão totalmente seguros — os outliers mostram isso.
+
+🔍 Esse comportamento reforça a importância de focar em retenção precoce e entender os pontos de frustração de usuários novos ou de baixo consumo.
+
+Se quiser, posso cruzar essa variável com o tempo de contrato (tenure) e identificar perfis de alto risco de evasão. Bora montar uma matriz de risco? 📊🔥
+
+****Análise da variável tenure (tempo de contrato) em relação ao churn***
+
+O boxplot mostra de forma clara que há uma diferença marcante entre o tempo de contrato de clientes que cancelaram o serviço (churn = 1) e os que permaneceram (churn = 0). Vamos aos principais insights:
+
+Clientes que permaneceram (churn = 0)
+Mediana: Aproximadamente 38 meses
+
+Distribuição: A maior parte dos clientes está entre 20 e 60 meses de contrato
+
+Tendência: Clientes mais antigos, com mais tempo de casa, tendem a permanecer
+
+Clientes que cancelaram (churn = 1)
+Mediana: Em torno de 10 meses
+
+Distribuição mais concentrada em tempos curtos — boa parte dos churns ocorre até 30 meses
+
+Possíveis outliers acima de 70 meses, indicando que, embora raro, clientes antigos também podem desistir
+
+O que isso indica?
+Evasão precoce: A maior parte dos cancelamentos ocorre nos primeiros meses — um sinal claro de falha na retenção inicial.
+
+Oportunidade estratégica: Focar em ações nos primeiros 6 a 12 meses (como programas de engajamento ou benefícios exclusivos) pode reduzir significativamente o churn.
+
+Valor do relacionamento: Quanto mais tempo o cliente permanece, maior a chance de fidelização — mas isso não é absoluto, pois ainda há outliers de longa duração que cancelam.
+
+Se quiser, posso cruzar tenure com outras variáveis como tipo de contrato ou gasto mensal para identificar quais perfis têm maior risco de churn em pouco tempo.
